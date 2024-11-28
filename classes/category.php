@@ -86,6 +86,32 @@ class Category{
             return 0;
         }
     }
-
+    public function show_category_frontend(){
+        $query = "SELECT * FROM tbl_category ORDER BY id ASC";
+        $data = $this->db->select($query);
+        if ($data && $data->num_rows > 0) {
+            return $data;
+        } else {
+            return [];
+        }
+    }
+    public function get_product_by_cat($id){
+        $query = "SELECT * FROM tbl_product WHERE catid='$id' ORDER BY catid ASC LIMIT 8";
+        $data = $this->db->select($query);
+        if ($data && $data->num_rows > 0) {
+            return $data;
+        } else {
+            return [];
+        }
+    }
+    public function get_name_by_cat($id){
+        $query = "SELECT tbl_product.*,tbl_category.category_Name,tbl_category.id FROM tbl_product,tbl_category WHERE tbl_product.catid=tbl_category.id AND tbl_product.catid='$id' LIMIT 1";
+        $data = $this->db->select($query);
+        if ($data && $data->num_rows > 0) {
+            return $data;
+        } else {
+            return [];
+        }
+    }
 }
 ?>

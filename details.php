@@ -70,7 +70,16 @@ echo "<script>window.location='404.php'</script>";
 				<div class="rightsidebar span_3_of_1">
 					<h2>Danh mục</h2>
 					<ul>
-				      <li><a href="productbycat.php">Mobile Phones</a></li>
+						<?php
+						$getall_category = $cat->show_category_frontend();
+						if($getall_category){
+							while($result_allcat=$getall_category->fetch_assoc()){
+						?>
+				      <li><a href="productbycat.php?id=<?php echo $result_allcat['id']?>"><?php echo $result_allcat['category_Name']?></a></li>
+					  <?php
+						}
+					}
+						?>
     				</ul>
     	
  				</div>
