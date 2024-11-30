@@ -8,7 +8,7 @@
 				?>
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						 <a href="details.php"> <img src="admin/uploads/<?php echo $resultdell['image'] ?>" alt="" /></a>
+						 <a href="details.php"> <img src="admin/upload/<?php echo $resultdell['image'] ?>" alt="" /></a>
 					</div>
 				    <div class="text list_2_of_1">
 						<h2>Dell</h2>
@@ -26,7 +26,7 @@
 				?>
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						  <a href="details.php"><img src="admin/uploads/<?php echo $resultSS['image'] ?>" alt="" ></a>
+						  <a href="details.php"><img src="admin/upload/<?php echo $resultSS['image'] ?>" alt="" ></a>
 					</div>
 					<div class="text list_2_of_1">
 						  <h2>Samsung</h2>
@@ -46,7 +46,7 @@
 				?>
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						 <a href="details.php"> <img src="admin/uploads/<?php echo $resultop['image'] ?>" alt="" /></a>
+						 <a href="details.php"> <img src="admin/upload/<?php echo $resultop['image'] ?>" alt="" /></a>
 					</div>
 				    <div class="text list_2_of_1">
 						<h2>Oppo</h2>
@@ -64,7 +64,7 @@
 				?>
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						  <a href="details.php"><img src="admin/uploads/<?php echo $resulthw['image'] ?>" alt="" /></a>
+						  <a href="details.php"><img src="admin/upload/<?php echo $resulthw['image'] ?>" alt="" /></a>
 					</div>
 					<div class="text list_2_of_1">
 						  <h2>Huawei</h2>

@@ -61,8 +61,8 @@ class Cart
         }
                 
     }
-    public function del_product_cart($cartid){
-        $cartid =  mysqli_real_escape_string($this->db->link, $cartid);
+    public function del_product_cart($cartId){
+        $cartId =  mysqli_real_escape_string($this->db->link, $cartId);
         $query = "DELETE FROM tbl_cart WHERE cartId = '$cartId'";
         $result = $this->db->delete($query);
         if($result){
