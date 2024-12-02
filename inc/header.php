@@ -13,6 +13,7 @@ $fm= new Format();
 $ct= new Cart();
 $us= new User();
 $cat= new Category();
+$cs = new customer();
 $product= new product();
 ?>
 <?php  
@@ -27,8 +28,9 @@ header("Cache-Control: max-age=2592000");
 			</div>
 			  <div class="header_top_right">
 			    <div class="search_box">
-				    <form>
-				    	<input type="text" value="Search for Products" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search for Products';}"><input type="submit" value="SEARCH">
+				    <form action="search.php" method="post">
+				    	<input type="text" placeholder="Tìm kiếm sản phẩm" name="tukhoa">
+						<input type="submit" name="search_product" value="Tìm kiếm">
 				    </form>
 			    </div>
 			    <div class="shopping_cart">
@@ -50,7 +52,20 @@ header("Cache-Control: max-age=2592000");
 							</a>
 						</div>
 			      </div>
-		   <div class="login"><a href="login.php">Login</a></div>
+			<?php
+				if(isset($_GET['customer_id'])){
+					Session::destroy();
+				}
+			?>
+		   <div class="login">
+			<?php
+			$login_check = Session::get('customer_login');
+			if($login_check== false){
+				echo '<a href="login.php">Login</a></div>';
+			}else {
+				echo '<a href="?customerid='.Session::get('customer_id').'">Logout</a></div>';
+			}
+			?>
 		 <div class="clear"></div>
 	 </div>
 	 <div class="clear"></div>

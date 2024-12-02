@@ -4,7 +4,7 @@ require_once('../classes/adminlogin.php');
 if(isset($_POST['login'])){
 	echo $_POST['login'];
 	$admin = $_POST['adminUser'];
-	$pass = md5($_POST['adminPassword']);
+	$pass =($_POST['adminPass']);
 
 	$login = $adminLogin->login_admin($admin, $pass);
 	
@@ -26,7 +26,7 @@ if(isset($_POST['login'])){
 				<input type="text" placeholder="Username" required="" name="adminUser"/>
 			</div>
 			<div>
-				<input type="password" placeholder="Password" required="" name="adminPassword"/>
+				<input type="password" placeholder="Password" required="" name="adminPass"/>
 			</div>
 			<div>
 				<input type="submit" name="login" value="Log in" />
