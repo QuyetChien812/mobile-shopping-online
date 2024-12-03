@@ -65,6 +65,7 @@ body{
 	outline:none;
 	margin:0;
 }
+
 .search_box input[type="submit"]{
 	border:none;
 	cursor:pointer;
@@ -2474,4 +2475,26 @@ p.terms {
 		width:92%;
 		padding:4%;
 	}
+}
+.regis-submit{
+	background-color: rgb(45, 45, 45);
+    color: white;
+    padding: 11px 5px;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: 600;
+	margin: 8px 0px;
+}
+.regis-submit:hover{
+	cursor: pointer;
+	opacity: 0.7;
+}
+.input-cs{
+	padding: 8px;
+	width: 340px;
+	margin: 5px 0px;
+	border: 1px solid #9f9f9f;
+	border-radius: 3px ;
+	outline: none;
+	color:  #9f9f9f;
 }

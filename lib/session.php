@@ -48,7 +48,7 @@ class Session{
     }
 
     public static function sessionDestroyAll(){
-        self::init(); // Khởi tạo session nếu chưa
+        self::init();
         session_unset(); 
         session_destroy();
     }

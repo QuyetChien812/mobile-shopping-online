@@ -25,48 +25,70 @@
 		<?php
 		require_once('inc/header.php');
 		?>
-
+        <?php
+		// đăng ký
+		if(isset($_POST['regis'])){
+			 $act2 = $customer->add_customer($_POST);
+		}
+		?>
+		<?php
+		// đăng nhập
+		if(isset($_POST['login'])){
+           $act = $customer->customer_login($_POST);
+		}
+		?>
  <div class="main">
     <div class="content">
     	 <div class="login_panel">
-        	<h3>Existing Customers</h3>
-        	<p>Sign in with the form below.</p>
-        	<form action="hello" method="get" id="member">
-                	<input name="Domain" type="text" value="Username" class="field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Username';}">
-                    <input name="Domain" type="password" value="Password" class="field" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+        	<h3>Tài khoản</h3>
+        	<p>Đăng nhập tài khoản ở đây.</p>
+            <?php
+            if(isset($act)){ 
+            echo $act;
+            }
+            ?>
+        	<form action="" method="post" id="member">
+                	<input  type="text" name="Username" class="field" placeholder="Tên tài khoản">
+                    <input  type="password" name="Password" class="field" placeholder="Mật khẩu" >
+					<input type="submit" class="regis-submit" name="login" value="Đăng nhập">
                  </form>
-                 <p class="note">If you forgot your passoword just enter your email and click <a href="#">here</a></p>
-                    <div class="buttons"><div><button class="grey">Sign In</button></div></div>
+                 
+                    
+						
+					<p class="note">If you forgot your passoword just enter your email and click <a href="#">here</a></p>
+					</div>
                     </div>
+
     	<div class="register_account">
-    		<h3>Register New Account</h3>
-    		<form>
+    		<h3>Đăng ký tài khoản mới.</h3>
+            <?php if(isset($act2)) echo $act2; ?>
+    		<form method="post" action="">
 		   			 <table>
 		   				<tbody>
 						<tr>
 						<td>
 							<div>
-							<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" >
+							<input style="color: black;" type="text" name="user"  placeholder="Họ và tên">
 							</div>
 							
 							<div>
-							   <input type="text" value="City" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'City';}">
+							   <input style="color: black;" type="text" name="City" placeholder="Thành phố" >
 							</div>
 							
 							<div>
-								<input type="text" value="Zip-Code" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Zip-Code';}">
+								<input style="color: black;" type="text" name="zipcode" placeholder="Zip-Code">
 							</div>
 							<div>
-								<input type="text" value="E-Mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail';}">
+								<input style="color: black;" class="input-cs" type="email" name="email" placeholder="Email">
 							</div>
 		    			 </td>
 		    			<td>
 						<div>
-							<input type="text" value="Address" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Address';}">
+							<input style="color: black;" type="text" name="Address" placeholder="Địa chỉ">
 						</div>
 		    		<div>
-						<select id="country" name="country" onchange="change_country(this.value)" class="frm-field required">
-							<option value="null">Select a Country</option>         
+						<select id="country" name="country"  class="frm-field required">
+							<option value="null">Chọn quốc gia</option>         
 							<option value="AF">Afghanistan</option>
 							<option value="AL">Albania</option>
 							<option value="DZ">Algeria</option>
@@ -79,21 +101,23 @@
 							<option value="BS">Bahamas</option>
 							<option value="BH">Bahrain</option>
 							<option value="BD">Bangladesh</option>
+							<option value="VIE">Việt Nam</option>
 
 		         </select>
 				 </div>		        
 	
 		           <div>
-		          <input type="text" value="Phone" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Phone';}">
+		          <input style="color: black;" class="customer-input" type="text" name="Phone" placeholder="Điện thoại">
 		          </div>
 				  
 				  <div>
-					<input type="text" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+					<input style="color: black;" class="input-cs" type="password" name="Password" placeholder="Mật khẩu">
 				</div>
 		    	</td>
 		    </tr> 
 		    </tbody></table> 
-		   <div class="search"><div><button class="grey">Create Account</button></div></div>
+		   <div class="search"><div>
+			<input type="submit" class="regis-submit" name="regis" value="Đăng ký tài khoản"></div></div>
 		    <p class="terms">By clicking 'Create Account' you agree to the <a href="#">Terms &amp; Conditions</a>.</p>
 		    <div class="clear"></div>
 		    </form>
@@ -123,4 +147,17 @@
     <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
 </body>
 </html>
-
+<style>
+	.edit-msg{
+    padding: 5px 15px;
+    background-color: rgb(130, 174, 130);
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 5px
+}
+.er{
+	background-color:red;
+	color: white;
+}
+</style>

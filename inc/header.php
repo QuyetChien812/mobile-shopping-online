@@ -14,6 +14,7 @@ $ct= new Cart();
 $us= new User();
 $cat= new Category();
 $product= new product();
+$customer = new Customer();
 ?>
 <?php  
 header("Cache-Control: no-cache, must-revalidate");
@@ -39,7 +40,18 @@ header("Cache-Control: max-age=2592000");
 							</a>
 						</div>
 			      </div>
+		   <?php
+		   $login = Session::get('customer_login');
+		   if($login){
+		   ?>
+		   <div class="login"><a href="logout.php">logout</a></div>
+		   <?php }
+		   else{
+		   ?>
 		   <div class="login"><a href="login.php">Login</a></div>
+		   <?php
+		   }
+		   ?>
 		 <div class="clear"></div>
 	 </div>
 	 <div class="clear"></div>
@@ -51,6 +63,7 @@ header("Cache-Control: max-age=2592000");
 	  <li><a href="topbrands.php">Top Brands</a></li>
 	  <li><a href="cart.php">Cart</a></li>
 	  <li><a href="contact.php">Contact</a> </li>
+	  <li><a href="profile.php">Your profile</a> </li>
 	  <div class="clear"></div>
 	</ul>
 </div>
