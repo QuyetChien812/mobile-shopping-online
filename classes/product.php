@@ -11,6 +11,12 @@ class product{
         $this->db = new Database();
         $this->fm = new Format();
     }
+    public function search_product($tukhoa){
+        $tukhoa = $this->fm->validation($tukhoa);
+        $query = "SELECT * FROM tbl_product WHERE productName LIKE '%$tukhoa%'";
+        $result = $this->db->select($query);
+        return $result;
+    }
     public function addProduct($data,$files){
 
         $productName = mysqli_real_escape_string($this->db->link, $data['productName']);
@@ -163,6 +169,26 @@ class product{
         INNER JOIN tbl_brand ON tbl_product.brandid = tbl_brand.id WHERE tbl_product.productid='$id'";
         $result=$this->db->select($query);
         return $result;
+    }
+    public function getLastestDell(){
+        $query = "SELECT * FROM tbl_product WHERE brandid = '8' order by productid desc LIMIT 1";
+        $result = $this->db->select($query);
+        return $result ;
+    }
+    public function getLastestoppo(){
+        $query = "SELECT * FROM tbl_product WHERE brandid = '5' order by productid desc LIMIT 1";
+        $result = $this->db->select($query);
+        return $result ;
+    }
+    public function getLastesthuawei(){
+        $query = "SELECT * FROM tbl_product WHERE brandid = '10' order by productid desc LIMIT 1";
+        $result = $this->db->select($query);
+        return $result ;
+    }
+    public function getLastestsamsung(){
+        $query = "SELECT * FROM tbl_product WHERE brandid = '9' order by productid desc LIMIT 1";
+        $result = $this->db->select($query);
+        return $result ;
     }
     }
 ?>

@@ -13,6 +13,7 @@ $fm= new Format();
 $ct= new Cart();
 $us= new User();
 $cat= new Category();
+$cs = new customer();
 $product= new product();
 $customer = new Customer();
 ?>
@@ -28,15 +29,27 @@ header("Cache-Control: max-age=2592000");
 			</div>
 			  <div class="header_top_right">
 			    <div class="search_box">
-				    <form>
-				    	<input type="text" value="Search for Products" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search for Products';}"><input type="submit" value="SEARCH">
+				    <form action="search.php" method="post">
+				    	<input type="text" placeholder="Tìm kiếm sản phẩm" name="tukhoa">
+						<input type="submit" name="search_product" value="Tìm kiếm">
 				    </form>
 			    </div>
 			    <div class="shopping_cart">
 					<div class="cart">
 						<a href="#" title="View my shopping cart" rel="nofollow">
 								<span class="cart_title">Cart</span>
-								<span class="no_product">(empty)</span>
+								<span class="no_product">
+								<?php
+								   $check_cart = $ct->check_cart();
+											if($check_cart){ 								
+											    $sum = Session::get("sum");
+												$qty = Session::get("qty");
+												echo $sum.' '.'đ'.' '.'Qty:'.$qty ;
+													}else{
+												echo 'Empty';
+												}
+								?>
+								</span>
 							</a>
 						</div>
 			      </div>

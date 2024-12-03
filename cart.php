@@ -24,9 +24,9 @@
   <div class="wrap">
 		<?php require_once('inc/header.php') ?>
 <?php
-     if(isset($_GET['cartid'])) {
-		$cartid = $_GET['cartid'];
-		$delcart = $ct -> del_product_cart($cartid);
+     if(isset($_GET['cartId'])) {
+		$cartId = $_GET['cartId'];
+		$delcart = $ct -> del_product_cart($cartId);
 	 }
      if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
 		$cartId = $_POST['cartId'];
@@ -78,7 +78,7 @@
 							?>
 							<tr>
 								<td><?php echo $result['productName'] ?></td>
-								<td><img src="admin/uploads/<?php echo $result['image'] ?>" alt=""/></td>
+								<td><img src="admin/upload/<?php echo $result['image'] ?>" alt=""/></td>
 								<td><?php echo $result['price'] ?></td>
 								<td>
 									<form action="" method="post">
@@ -91,7 +91,7 @@
 								 $total = $result['price'] * $result['quantity'];
 								 echo $total;
 								 ?></td>
-								<td><a href="?cartid=<?php echo $result['cartId'] ?>">Xóa</a></td>
+								<td><a href="?cartId=<?php echo $result['cartId'] ?>">Xóa</a></td>
 							</tr>
 							<?php 
 							$subtotal += $total ;

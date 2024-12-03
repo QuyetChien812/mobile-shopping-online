@@ -19,24 +19,24 @@ class Cart
          $id =  mysqli_real_escape_string($this->db->link, $id);
          $sId = session_id();
 
-         $query = "SELECT * FROM tbl_product WHERE productId = '$id'";
+         $query = "SELECT * FROM tbl_product WHERE productid = '$id'";
          $result = $this->db->select($query)->fetch_assoc();
          $image = $result["image"];
          $price = $result["price"];
          $productName = $result["productName"];
-         $check_cart = "SELECT * FROM tbl_cart WHERE productId = '$id' AND sId = '$sId'";
-         if($check_cart){
-            $msg = "Sản phẩm đã được thêm vào giỏ hàng";
-            return $msg;
-         } else{
-            $query_insert = "INSERT INTO tbl_cart(productId,quantity,sId,image,price,productName) VALUES('$id','$quantity','$sId','$image','$price','$productName'),";
+        //  $check_cart = "SELECT * FROM tbl_cart WHERE productId = '$id' AND sId = '$sId'";
+        //  if($check_cart){
+        //     $msg = "Sản phẩm đã được thêm vào giỏ hàng";
+        //     return $msg;
+        //  } else{
+            $query_insert = "INSERT INTO tbl_cart(productId,quantity,sId,image,price,productName) VALUES('$id','$quantity','$sId','$image','$price','$productName')";
             $insert_cart = $this->db->insert($query_insert);
-            if($result){
+        if($result){
                 header('Location:cart.php');
-            }else{
+        }else{
                 header('Location:404.php');
             }
-        }
+        // }
     }
     public function get_product_cart(){
         $sId = session_id();
@@ -54,8 +54,7 @@ class Cart
                   WHERE cartId = '$cartId'";
         $result = $this->db->update($query);
         if($result){
-            $msg = "<span class='success'>Cập nhật số lượng sản phẩm thành công</span>";
-            return $msg; 
+            header('Location:cart.php'); 
         }else {
             $msg = "<span class='error'>Cập nhật số lượng sản phẩm thất bại</span>";
             return $msg; 

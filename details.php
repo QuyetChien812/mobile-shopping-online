@@ -24,10 +24,14 @@
 	<?php
     require_once('inc/header.php');
 	?>
-<?php if(!isset($_GET['proid'])||$_GET['proid']==NULL){
+<?php if(!isset($_GET['proid']) || $_GET['proid']==NULL){
 echo "<script>window.location='404.php'</script>";
 }else{
     $id=$_GET['proid'];
+}
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
+    $quantity  = $_POST['quantity'];
+    $AddToCart = $ct->add_to_cart($quantity,$id);	
 }
 ?>
  <div class="main">
@@ -51,10 +55,15 @@ echo "<script>window.location='404.php'</script>";
 						<p>Brand:<span><?php echo $result_details['brand_Name']?></span></p>
 					</div>
 				<div class="add-cart">
-					<form action="cart.php" method="post">
-						<input type="number" class="buyfield" name="" value="1"/>
+					<form action="" method="post">
+						<input type="number" class="buyfield" name="quantity" value="1" min = "1"/>
 						<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
-					</form>				
+					</form>		
+					<?php 
+						if(isset($Addtocart)) {
+							echo '<span style="color:red;font-size:18px;">Sản phẩm đã được thêm vào giỏ hàng</span>';
+						}
+						?>		
 				</div>
 			</div>
 			<div class="product-desc">
