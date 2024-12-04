@@ -1446,7 +1446,7 @@ table.tblone img {
   text-align: center;
   width: 610px;
 }
-.shopleft img{outline:none}
+.shopleft img{outline:none;display: block;margin: 0 auto;}
 .shopleft a,.shopright a{outline:none}
 
 .shopright img {

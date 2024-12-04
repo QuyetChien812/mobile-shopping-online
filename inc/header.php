@@ -75,6 +75,7 @@ header("Cache-Control: max-age=2592000");
 	  <li><a href="products.php">Products</a> </li>
 	  <li><a href="topbrands.php">Top Brands</a></li>
 	  <li><a href="cart.php">Cart</a></li>
+	  <li><a href="compare.php">So Sánh</a></li>
 	  <li><a href="contact.php">Contact</a> </li>
 	  <li><a href="profile.php">Your profile</a> </li>
 	  <div class="clear"></div>

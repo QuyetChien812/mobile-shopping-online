@@ -50,6 +50,57 @@ class product{
             
         }
     }
+    public function insert_slider($data,$files){
+        $sliderName = mysqli_real_escape_string($this->db->link, $data['sliderName']);
+        $type = mysqli_real_escape_string($this->db->link, $data['type']);
+        $permitted = array('jpg','jpeg','png','gif');
+        $file_name = $_FILES['image']['name'];
+        $file_size = $_FILES['image']['size'];
+        $file_temp = $_FILES['image']['tmp_name'];
+        $div = explode('.',$file_name);
+        $file_ext = strtolower(end($div));
+        $unique_image = substr(md5(time()),0,10).'.'.$file_ext;
+        $uploaded_image = "upload/".$unique_image;
+
+        if($sliderName==""||$type==""){
+            $alert = "<span class='error'>Các trường không được rỗng</span>";
+            return $alert;
+        }else{
+            if(!empty($file_name)){
+                //Nếu chọn ảnh
+            if($file_size >20480000){
+            $alert="<span class='success'>Dung lượng ảnh phải dưới 20 MB</span>";
+            return $alert;
+            }
+            elseif(in_array($file_ext,$permitted)===false)
+            {//echo "<span class='error'>Bạn chỉ có thể tải lên:-".implode(',',$permitted)."</span>";
+                $alert = "<span class='success'>Bạn chỉ có thể tải lên:-".implode(',',$permitted)."</span>";
+                return $alert;
+            }
+            move_uploaded_file($file_temp, $uploaded_image);
+            $query = "INSERT INTO tbl_slider (sliderName,type,slider_image) VALUES('$sliderName','$type','$unique_image')";
+            $result =  $this->db->insert($query);
+            if($result){
+                return 'Thêm Slider thành công';
+            }
+            else{
+                return 'thêm Slider bị lỗi';
+            }
+        }
+    }
+    }
+    public function show_slider(){
+        $query = "SELECT * FROM  tbl_slider where type ='1' order by sliderId desc";
+        $result = $this->db->select($query);
+        return $result;
+
+    }
+    public function show_slider_list(){
+        $query = "SELECT * FROM  tbl_slider order by sliderId desc";
+        $result = $this->db->select($query);
+        return $result;
+
+    }
     public function deleteProduct($id){
         $query = "DELETE FROM tbl_product WHERE productid = '$id'";
         $result = $this->db->delete($query);
@@ -59,6 +110,25 @@ class product{
         }
         else{
             $alert="<span class='error'>Xóa sản phẩm thất bại</span>";
+            return $alert;
+        }
+    }
+    public function update_type_slider($id,$type){
+        $type = mysqli_real_escape_string($this->db->link, $type);
+        $query = "UPDATE tbl_slider SET type ='$type'  where sliderId ='$id'";
+        $result = $this->db->update($query);
+        return $result;
+
+    }
+    public function del_slider($id){
+        $query = "DELETE FROM tbl_slider WHERE sliderId = '$id'";
+        $result = $this->db->delete($query);
+        if($result){
+            $alert="<span class='success'>Xóa Slider thành công</span>";
+            return $alert;
+        }
+        else{
+            $alert="<span class='error'>Xóa Slider thất bại</span>";
             return $alert;
         }
     }
@@ -190,6 +260,21 @@ class product{
         $result = $this->db->select($query);
         return $result ;
     }
+    public function get_compare($customer_id){
+        $query = "SELECT * FROM tbl_compare WHERE customer_id = '$customer_id' order by id desc";
+        $result = $this->db->select($query);
+        return $result ;
+    }
+    public function delete_from_compare($customer_id, $productid) {
+        $query = "DELETE FROM tbl_compare WHERE customer_id = '$customer_id' AND productid = '$productid'";
+        $result = $this->db->delete($query);
+        if ($result) {
+        } else {
+            return "<span class='error'>Có lỗi xảy ra khi xóa sản phẩm!</span>";
+        }
+    }
+    
+    
     public function insertCompare($productid,$customer_id){
         $productid = $this ->fm->validation($productid);
         $customer_id =  mysqli_real_escape_string($this->db->link, $customer_id);
