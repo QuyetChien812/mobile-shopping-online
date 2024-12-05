@@ -78,6 +78,34 @@ class Cart
         $result = $this->db->select($query);
         return $result ;
     }
+    public function del_all_data_cart(){
+        $sId = session_id();
+        $query = "DELETE FROM tbl_cart WHERE sId = '$sId'";
+        $result = $this->db->select($query);
+        return $result;
+        }
+    public function insertOrder($customer_id){
+        $sId = session_id();
+        $query = "SELECT * FROM tbl_cart WHERE sId = '$sId'";
+        $get_product = $this->db->select($query);
+        if($get_product){
+            while($result=$get_product->fetch_assoc()){
+                $productid= $result['productId'];
+                $productName= $result['productName'];
+                $quantity= $result['quantity'];
+                $price= $result['price'] * $quantity;
+                $image= $result['image'];
+                $customer_id = $customer_id;
+                $query_order = "INSERT INTO tbl_order(productid,productName,quantity,price,image,customer_id) VALUES('$productid','$productName','$quantity','$price','$image','$customer_id')";
+                $insert_Order = $this->db->insert($query_order);
+            }
+        }
+    }
+    public function getAmountPrice($customer_id){
+        $query = "SELECT price FROM tbl_order WHERE customer_id = '$customer_id' ";
+        $get_price = $this->db->select($query);
+        return $get_price;
+    }
     
 }
 

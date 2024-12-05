@@ -1,7 +1,7 @@
-<!DOCTYPE php>
+<!DOCTYPE HTML>
 <head>
-<title>Free Smart Store Website Template</title>
-<meta http-equiv="Content-Type" content="text/php; charset=utf-8" />
+<title>Store Website</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="css/menu.css" rel="stylesheet" type="text/css" media="all"/>
@@ -19,36 +19,49 @@
     $('#dc_mega-menu-orange').dcMegaMenu({rowItems:'4',speed:'fast',effect:'fade'});
   });
 </script>
+<style>
+    .box_left{
+        width: 45%;
+        border: 1px solid #666;
+        float: left;
+        padding: 4px;
+    }
+    .box_right{
+        width: 45%;
+        border: 1px solid #666;
+        float: right;
+        padding: 4px;
+    }
+	.a_order{
+		padding: 7px 20px;
+		background: red;
+		font-size: 21px;
+		color: #fff;
+	}
+</style>
 </head>
-<body>
+<form action="" method="POST">
   <div class="wrap">
-		<?php require_once('inc/header.php') ?>
-<?php
-     if(isset($_GET['cartId'])) {
-		$cartId = $_GET['cartId'];
-		$delcart = $ct -> del_product_cart($cartId);
-	 }
-     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-		$cartId = $_POST['cartId'];
-         $quantity = $_POST['quantity'];
-		 $update_quantity_cart = $ct->update_quantity_cart($quantity,$cartId);
-		 if($quantity<=0){
-			$delcart = $ct -> del_product_cart($cartId);
-		 }
-
-
-	 }
-?>
-<?php
-   if(!isset($_GET['id'])) {
-	echo "<meta http-equiv='refresh' content='0;URL=?id=live'>";
-   }
-?>
+	<?php
+    require_once('inc/header.php');
+	?>
+	<?php if(isset($_GET['orderid']) && $_GET['orderid']=='order'){
+	$customer_id= Session::get('customer_id');
+	$insertOrder= $ct->insertOrder($customer_id);
+	$delCart=$ct->del_all_data_cart();
+	header('Location:success.php');
+}
+	?>
+<div>
  <div class="main">
     <div class="content">
-    	<div class="cartoption">		
-			<div class="cartpage">
-			    	<h2>Your Cart</h2>
+    	<div class="section group">
+        <div class="heading">
+                <h3>Thanh toán trực tiếp</h3>
+                </div>
+                <div class="clear"></div>
+                <div class="box_left">
+                <div class="cartpage">
 					<?php
 					if(isset($update_quantity_cart)) {
 						echo $update_quantity_cart ;
@@ -61,37 +74,32 @@
 					?>
 						<table class="tblone">
 							<tr>
-								<th width="20%">Product Name</th>
-								<th width="10%">Image</th>
+                                <th width="5%">ID</th>
+								<th width="15">Product Name</th>
 								<th width="15%">Price</th>
 								<th width="25%">Quantity</th>
 								<th width="20%">Total Price</th>
-								<th width="10%">Action</th>
 							</tr>
 							<?php
 							$get_product_cart = $ct->get_product_cart();
 							if($get_product_cart){
 								$subtotal = 0;
 								$qty = 0;
+                                $i = 0;
 								while($result = $get_product_cart->fetch_assoc()){
-									
+									$i++;
 							?>
 							<tr>
+                                <td><?php echo $i; ?></td>
 								<td><?php echo $result['productName'] ?></td>
-								<td><img src="admin/upload/<?php echo $result['image'] ?>" alt=""/></td>
-								<td><?php echo $result['price'] ?></td>
+								<td><?php echo $result['price'].' '.'VND' ?></td>
 								<td>
-									<form action="" method="post">
-									    <input type="hidden" name="cartId" value="<?php echo $result['cartId'] ?>"/>
-										<input type="number" name="quantity" min ="0" value="<?php echo $result['quantity'] ?>"/>
-										<input type="submit" name="submit" value="Update"/>
-									</form>
+                                <?php echo $result['quantity'] ?>
 								</td>
 								<td><?php
 								 $total = $result['price'] * $result['quantity'];
-								 echo $total;
+								 echo $total.' '.'VND';
 								 ?></td>
-								<td><a href="?cartId=<?php echo $result['cartId'] ?>">Xóa</a></td>
 							</tr>
 							<?php 
 							$subtotal += $total ;
@@ -100,18 +108,17 @@
 								
 						    }
 							?>
-								
 						</table>
 						<?php
 							$check_cart = $ct->check_cart();
 							if($check_cart){ 								
 						
 						?>
-						<table style="float:right;text-align:left;" width="40%">
+						<table style="float:right;text-align:left;padding: 5px;margin: 5px" width="40%">
 							<tr>
 								<th>Sub Total : </th>
 								<td><?php
-									echo $subtotal;									
+									echo $subtotal.' '.'VND';									
 									Session::set('sum',$subtotal);
 									Session::set('qty',$qty);
 
@@ -119,14 +126,14 @@
 							</tr>
 							<tr>
 								<th>VAT : </th>
-								<td>10%</td>
+								<td>10% (<?php echo $vat = $subtotal *0.1;?>)</td>
 							</tr>
 							<tr>
 								<th>Grand Total :</th>
 								<td><?php
 								$vat = $subtotal * 0.1;
 								$gtotal = $subtotal + $vat;
-								echo $gtotal;
+								echo $gtotal.' '.'VND';
 								?> </td>
 							</tr>
 					   </table>
@@ -136,38 +143,51 @@
 					  }    
  					   ?>
 					</div>
-					<div class="shopping">
-						<div class="shopleft">
-							<a href="index.php"> <img src="images/shop.png" alt="" /></a>
-						</div>
-						<div class="shopright">
-							<a href="payment.php"> <img src="images/check.png" alt="" /></a>
-						</div>
-					</div>
-    	</div>  	
-       <div class="clear"></div>
-    </div>
- </div>
+                </div>
+                <div class="box_right">
+                <table class="tblone">
+    <tr>
+		<td>Họ và tên</td>
+		<td>:</td>
+		<td><?php echo Session::get('customer_name'); ?></td>
+	</tr>
+	<tr>
+		<td>Email</td>
+		<td>:</td>
+		<td><?php echo Session::get('customer_email'); ?></td>
+	</tr>
+	<tr>
+		<td>Số điện thoại</td>
+		<td>:</td>
+		<td><?php echo Session::get('customer_phone'); ?></td>
+	</tr>
+	<tr>
+		<td>Zipcode</td>
+		<td>:</td>
+		<td><?php echo Session::get('customer_zipcode'); ?></td>
+	</tr> 
+	<tr>
+		<td>Thành phố</td>
+		<td>:</td>
+		<td><?php echo Session::get('customer_city'); ?></td>
+	</tr> 
+	<tr>
+		<td>Địa chỉ</td>
+		<td>:</td>
+		<td><?php echo Session::get('customer_address'); ?></td>
+	</tr> 
+	<tr>
+	<td colspan="3"><a href="profile_edit.php">Cập nhật</a></td>
+	</tr>
+ </table>
+                </div>
+ 		</div>
+ 	</div>
+	<center><a href="?orderid=order"class="a_order">Đặt hàng</a></center>
 </div>
+					</div>
+</form>
    <?php
    require_once('inc/footer.php');
    ?>
-    <script type="text/javascript">
-		$(document).ready(function() {
-			/*
-			var defaults = {
-	  			containerID: 'toTop', // fading element id
-				containerHoverID: 'toTopHover', // fading element hover id
-				scrollSpeed: 1200,
-				easingType: 'linear' 
-	 		};
-			*/
-			
-			$().UItoTop({ easingType: 'easeOutQuart' });
-			
-		});
-	</script>
-    <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
-</body>
-</php>
 
