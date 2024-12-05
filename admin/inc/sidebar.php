@@ -40,6 +40,12 @@
                         <li><a href="sliderlist.php">Danh sách Slider</a> </li>
                     </ul>
                 </li>
+                <li><a class="menuitem">Danh sách tài khoản</a>
+                    <ul class="submenu">
+                        <li><a href="accountcustomerlist.php">Tài khoản khách hàng</a> </li>
+                        <li><a href="accountadminlist.php">Tài khoản Admin</a> </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>

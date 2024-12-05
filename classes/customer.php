@@ -103,6 +103,16 @@ class Customer{
             return "Vui lòng điền đầy đủ thông tin";
         }
      }
+     public function get_all_customer(){
+        $query ="SELECT * FROM tbl_customer";
+        $result =$this->db->select($query);
+        if($result){
+            return $result;
+        }
+        else{
+            return "Đã có lỗi, vui lòng thử lại";
+        }
+     }
      public function customer_changePassword($data, $id){
             $old_password = mysqli_real_escape_string($this->db->link, md5($data['oldPass']));
             $new_password = mysqli_real_escape_string($this->db->link, md5($data['newPass']));
