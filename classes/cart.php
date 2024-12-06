@@ -125,6 +125,49 @@ class Cart
         $get_inbox_cart = $this->db->select($query);
         return $get_inbox_cart  ;
     }
-} 
+    public function shifted($id,$time,$price){
+        $id =  mysqli_real_escape_string($this->db->link, $id);
+        $time =  mysqli_real_escape_string($this->db->link, $time);
+        $price =  mysqli_real_escape_string($this->db->link, $price);
+        $query = "UPDATE tbl_order SET 
 
+        status = '1'
+
+        WHERE id = '$id' AND date_order='$time' AND price='$price'";
+$result = $this->db->update($query);
+if($result){
+    $msg = "<span class='success'>Cập nhật đơn hàng thành công</span>";
+    return $msg; 
+}else {
+  $msg = "<span class='error'>Cập nhật đơn hàng thất bại</span>";
+  return $msg; 
+}
+    }
+    public function del_shifted($id,$time,$price){
+        $id =  mysqli_real_escape_string($this->db->link, $id);
+        $time =  mysqli_real_escape_string($this->db->link, $time);
+        $price =  mysqli_real_escape_string($this->db->link, $price);
+        $query = "DELETE FROM tbl_order 
+        WHERE id = '$id' AND date_order='$time' AND price='$price'";
+$result = $this->db->update($query);
+if($result){
+    $msg = "<span class='success'>Xóa đơn hàng thành công</span>";
+    return $msg; 
+}else {
+  $msg = "<span class='error'>Xóa đơn hàng thất bại</span>";
+  return $msg; 
+}
+    }
+    public function shifted_confirm($id,$time,$price){
+        $id =  mysqli_real_escape_string($this->db->link, $id);
+        $time =  mysqli_real_escape_string($this->db->link, $time);
+        $price =  mysqli_real_escape_string($this->db->link, $price);
+        $query = "UPDATE tbl_order SET 
+
+        status = '2'
+
+        WHERE customer_id = '$id' AND date_order='$time' AND price='$price'";
+$result = $this->db->update($query);
+} 
+}
 ?>

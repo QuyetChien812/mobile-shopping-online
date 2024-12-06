@@ -77,6 +77,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 						?>		
 				</div>
 				<div class="add-cart">
+					<a href="" class="buysubmit">Lưu vào danh sách ưa thích</a>
+				</div>
+				<div class="add-cart">
 					<form action="" method="POST">
 					<!-- <a href="?wlist=<?php echo $result_details['productid'] ?>" class ="buysubmit"> Lưu vào sản phẩm yêu thích </a>
 					<a href="?wlist=<?php echo $result_details['productid'] ?>" class ="buysubmit"> So sánh sản phẩm </a> -->

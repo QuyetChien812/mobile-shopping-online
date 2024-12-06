@@ -172,5 +172,10 @@ class Customer{
         $act = $this->db->select($query);
         return $act ? true : false;
      }
+     public function show_customer($Id){
+        $query = "SELECT *FROM tbl_customer WHERE id = '$Id'";
+        $result = $this->db->select($query);
+        return $result;
+    }
  };
 ?>

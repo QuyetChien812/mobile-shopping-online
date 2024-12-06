@@ -23,12 +23,18 @@
 <body>
   <div class="wrap">
 		<?php require_once('inc/header.php') ?>
-
 		<?php
 		$login_check= Session::get('customer_login');	
 		if($login_check == false) {
 			header('Location:login.php');
-			 }
+			}
+		$ct = new Cart();
+		if(isset($_GET['confirmid'])){
+				$id = $_GET['confirmid'];
+				$time = $_GET['time'];
+				$price = $_GET['price'];
+				$shifted_confirm = $ct->shifted_confirm($id,$time,$price);
+		}
 		?>
 
  <div class="main">
@@ -73,14 +79,14 @@
 									<?php  
 									if($result['status']=='0'){
 										echo 'Đang chờ xử lý';
-									}else{
-										echo 'Đã xử lý';
+									}elseif($result['status']=='1'){
+										?>
+										<span>Đang giao</span>
+										<?php
+									}elseif($result['status']=='2'){
+										echo 'Đã nhận hàng';
 									}
-									
 									?>
-
-
-
 								</td>
 								<?php
 								  if($result['status']=='0'){
@@ -89,9 +95,13 @@
 								 <td> <?php echo'N/A';?></td> 
 								 <?php 
 								  
+									}elseif($result['status']=='1'){
+								 ?>
+								 <td><a href="?confirmid=<?php echo $customer_id ?>&price=<?php echo $total= $result['price']; ?>&time=<?php echo $result['date_order']?>">Xác nhận</a></td>
+								 <?php
 									}else{
 								 ?>
-								<td><a onclick="return confirm('Bạn chắc chắn muốn xóa chứ?');" href="?cartid=<?php echo $result['cartId'] ?>">Xóa</a></td>
+								<td><?php echo 'Đã nhận hàng'?></td>
 							<?php 
 						  }
 							?>
@@ -111,9 +121,6 @@
 					<div class="shopping">
 						<div class="shopleft">
 							<a href="index.php"> <img src="images/shop.png" alt="" /></a>
-						</div>
-						<div class="shopright">
-							<a href="payment.php"> <img src="images/check.png" alt="" /></a>
 						</div>
 					</div>
     	</div>  	
