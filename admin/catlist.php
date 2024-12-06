@@ -24,9 +24,9 @@ $category_num = $cate->getNumberOfCategory();
 						if($category_num > 0){?>
 						<?php while( $row = $category_row->fetch_assoc()) { $i++; ?>
 						<tr class="odd gradeX">
-							<td style="text-align: center;"><?php echo $i ?></td>
-							<td style="text-align: center;"><?php echo  $row['category_Name']; ?></td>
-							<td style="text-align: center;"><a href="catedit.php?id=<?php echo $row['id'] ?>">Sửa</a> || <a href="catdelete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('do you want to delete')" >Xóa</a></td>
+							<td><?php echo $i ?></td>
+							<td><?php echo  $row['category_Name']; ?></td>
+							<td><a href="catedit.php?id=<?php echo $row['id'] ?>">Sửa</a> || <a href="catdelete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('do you want to delete')" >Xóa</a></td>
 						</tr>
 						<?php } ?>
 					    <?php }
@@ -42,5 +42,13 @@ $category_num = $cate->getNumberOfCategory();
                </div>
             </div>
         </div>
+		<script type="text/javascript">
+    $(document).ready(function () {
+        setupLeftMenu();
+
+        $('.datatable').dataTable();
+        setSidebarHeight();
+    });
+</script>
 <?php include 'inc/footer.php';?>
 
