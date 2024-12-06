@@ -72,13 +72,12 @@ header("Cache-Control: max-age=2592000");
  </div>
  <div class="menu">
 	<ul id="dc_mega-menu-orange" class="dc_mm-orange">
-	  <li><a href="index.php">Home</a></li>
+	  <li><a href="index.php">Trang chủ</a></li>
 	  <li><a href="products.php">Products</a> </li>
 	  <li><a href="topbrands.php">Top Brands</a></li>
-	  <li><a href="cart.php">Cart</a></li>
+	  <li><a href="cart.php">Giỏ hàng</a></li>
 	  <li><a href="compare.php">So Sánh</a></li>
-	  <li><a href="contact.php">Contact</a> </li>   
-	  <li><a href="orderdetails.php">ORDERED</a></li>  
+	  <li><a href="orderdetails.php">Thông tin đơn hàng</a></li>  
 
 
 	<?php
@@ -90,7 +89,7 @@ header("Cache-Control: max-age=2592000");
 		   echo '';
 		}
 	?>
-	  <li><a href="profile.php">Your profile</a> </li>
+	  <li><a href="profile.php">Thông tin của bạn</a> </li>
 	  <div class="clear"></div>
 	</ul>
 </div>

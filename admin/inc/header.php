@@ -55,7 +55,7 @@
                     <div class="floatleft marginleft10">
                         <ul class="inline-ul floatleft">
                             <li>Hello <?php echo (Session::get('name') != false) ? Session::get('name') : 'admin' ?></li>
-                            <li><a href="../classes/adminlogout.php">Logout</a></li>
+                            <li><a href="../classes/adminlogout.php">Đăng xuất</a></li>
                         </ul>
                     </div>
                 </div>
@@ -68,10 +68,9 @@
         <div class="grid_12">
             <ul class="nav main">
                 <li class="ic-dashboard"><a href="index.php"><span>Dashboard</span></a> </li>
-                <li class="ic-form-style"><a href="userprofile.php"><span>User Profile</span></a></li>
-				<li class="ic-typography"><a href="changepassword.php"><span>Change Password</span></a></li>
-				<li class="ic-grid-tables"><a href="inbox.php"><span>Inbox</span></a></li>
-                <li class="ic-charts"><a href="../index.php"><span>Visit Website</span></a></li>
+                <li class="ic-form-style"><a href="userprofile.php"><span>Thông tin tài khoản</span></a></li>
+				<li class="ic-typography"><a href="changepassword.php"><span>Đổi mật khẩu</span></a></li>
+                <li class="ic-charts"><a href="../index.php"><span>Truy cập trang chủ</span></a></li>
             </ul>
         </div>
         <div class="clear">

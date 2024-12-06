@@ -30,7 +30,7 @@
     <div class="content">
     	<div class="content_top">
     		<div class="heading">
-    		<h3>Feature Products</h3>
+    		<h3>Sản phẩm nổi bật</h3>
     		</div>
     		<div class="clear"></div>
     	</div>
@@ -54,7 +54,7 @@
 			</div>
 			<div class="content_bottom">
     		<div class="heading">
-    		<h3>New Products</h3>
+    		<h3>Sản phẩm mới</h3>
     		</div>
     		<div class="clear"></div>
     	</div>

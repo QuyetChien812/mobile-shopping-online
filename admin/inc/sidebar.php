@@ -28,6 +28,12 @@
                         <li><a href="productlist.php">Danh sách sản phẩm</a> </li>
                     </ul>
                 </li>
+                </li>
+                <li><a class="menuitem">Đơn hàng của khách</a>
+                    <ul class="submenu">
+                        <li><a href="orderlist.php">Danh sách đơn hàng</a> </li>
+                    </ul>
+                </li>
                  <li><a class="menuitem">Update Pages</a>
                     <ul class="submenu">
                         <li><a>About Us</a></li>
