@@ -106,7 +106,8 @@ class Cart
         $get_price = $this->db->select($query);
         return $get_price;
     }
+
     
-}
+} 
 
 ?>
