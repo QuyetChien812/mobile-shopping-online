@@ -56,9 +56,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 					<h2><?php echo $result_details['productName']?></h2>
 					<p><?php echo $fm->textShorter($result_details['product_desc'],1000)?></p>					
 					<div class="price">
-						<p>Price: <span><?php echo $result_details['price'].".","VN"?></span></p>
-						<p>Category: <span><?php echo $result_details['category_Name']?></span></p>
-						<p>Brand:<span><?php echo $result_details['brand_Name']?></span></p>
+						<p>Giá: <span><?php echo $result_details['price'].".","VN"?></span></p>
+						<p>Danh mục: <span><?php echo $result_details['category_Name']?></span></p>
+						<p>Thương hiệu:<span><?php echo $result_details['brand_Name']?></span></p>
 					</div>
 				<div class="add-cart">
 					<form action="" method="post">
@@ -77,7 +77,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 						?>		
 				</div>
 				<div class="add-cart">
-					<a href="" class="buysubmit">Lưu vào danh sách ưa thích</a>
+					<!-- <a href="" class="buysubmit">Lưu vào danh sách ưa thích</a> -->
 				</div>
 				<div class="add-cart">
 					<form action="" method="POST">
@@ -90,7 +90,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 				</div>
 			</div>
 			<div class="product-desc">
-			<h2>Product Details</h2>
+			<h2>Thông tin chi tiết về sản phẩm</h2>
 			<p><?php echo $fm->textShorter($result_details['product_desc'],1000)?></p>
 	    </div>
 				

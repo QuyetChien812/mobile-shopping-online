@@ -46,8 +46,8 @@
                     <img src="img/NewBackground-removebg-preview.png" alt="Logo" />
 				</div>
 				<div class="floatleft middle">
-					<h1>Welcome to admin</h1>
-					<p>simple movile online store</p>
+					<h1>Chào mừng đến với trang quản lý</h1>
+					<p>SIMPLE MOBILE ONLINE STORE</p>
 				</div>
                 <div class="floatright">
                     <div class="floatleft">
