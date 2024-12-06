@@ -78,6 +78,14 @@ class Cart
         $result = $this->db->select($query);
         return $result ;
     }
+    public function check_order($customer_id){
+        $sId = session_id();
+        $query = "SELECT * FROM tbl_order WHERE customer_id = '$customer_id'";
+        $result = $this->db->select($query);
+        return $result ;
+
+
+    }
     public function del_all_data_cart(){
         $sId = session_id();
         $query = "DELETE FROM tbl_cart WHERE sId = '$sId'";
@@ -107,7 +115,16 @@ class Cart
         return $get_price;
     }
 
-    
+    public function get_cart_ordered($customer_id){
+        $query = "SELECT * FROM tbl_order WHERE customer_id = '$customer_id' ";
+        $get_cart_ordered = $this->db->select($query);
+        return $get_cart_ordered;
+    }
+    public function get_inbox_cart(){
+        $query = "SELECT * FROM tbl_order ORDER BY date_order "; 
+        $get_inbox_cart = $this->db->select($query);
+        return $get_inbox_cart  ;
+    }
 } 
 
 ?>

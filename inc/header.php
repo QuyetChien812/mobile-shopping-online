@@ -65,6 +65,7 @@ header("Cache-Control: max-age=2592000");
 		   <?php
 		   }
 		   ?>
+
 		 <div class="clear"></div>
 	 </div>
 	 <div class="clear"></div>
@@ -76,8 +77,21 @@ header("Cache-Control: max-age=2592000");
 	  <li><a href="topbrands.php">Top Brands</a></li>
 	  <li><a href="cart.php">Cart</a></li>
 	  <li><a href="compare.php">So Sánh</a></li>
-	  <li><a href="contact.php">Contact</a> </li>
+	  <li><a href="contact.php">Contact</a> </li>   
+	  <li><a href="orderdetails.php">ORDERED</a></li>  
+
+
+	<?php
+	    $customer_id= Session::get('customer_id');	
+		$check_order = $ct->check_order('customer_id');
+		if($check_order == true){ 																			    
+		   echo '<li><a href="orderdetails.php">ORDERED</a></li>' ;
+		}else{
+		   echo '';
+		}
+	?>
 	  <li><a href="profile.php">Your profile</a> </li>
 	  <div class="clear"></div>
 	</ul>
 </div>
+<li><a href=""></a></li>

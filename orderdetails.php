@@ -23,118 +23,90 @@
 <body>
   <div class="wrap">
 		<?php require_once('inc/header.php') ?>
-<?php
-     if(isset($_GET['cartId'])) {
-		$cartId = $_GET['cartId'];
-		$delcart = $ct -> del_product_cart($cartId);
-	 }
-     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
-		$cartId = $_POST['cartId'];
-         $quantity = $_POST['quantity'];
-		 $update_quantity_cart = $ct->update_quantity_cart($quantity,$cartId);
-		 if($quantity<=0){
-			$delcart = $ct -> del_product_cart($cartId);
-		 }
 
+		<?php
+		$login_check= Session::get('customer_login');	
+		if($login_check == false) {
+			header('Location:login.php');
+			 }
+		?>
 
-	 }
-?>
-<?php
-   if(!isset($_GET['id'])) {
-	echo "<meta http-equiv='refresh' content='0;URL=?id=live'>";
-   }
-?>
  <div class="main">
     <div class="content">
     	<div class="cartoption">		
 			<div class="cartpage">
-			    	<h2>Your Cart</h2>
-					<?php
-					if(isset($update_quantity_cart)) {
-						echo $update_quantity_cart ;
-					}
-					?>
-					<?php
-					if(isset($delcart)) {
-						echo $delcart ;
-					}
-					?>
+			    	<h2 style = "width:500px;">Thông tin đơn hàng đã đặt</h2>
+		
 						<table class="tblone">
 							<tr>
+							  <th width="10%">ID</th>
 								<th width="20%">Product Name</th>
 								<th width="10%">Image</th>
 								<th width="15%">Price</th>
-								<th width="25%">Quantity</th>
-								<th width="20%">Total Price</th>
+								<th width="15%">Quantity</th>
+								<th width="10%">Date</th>
+								<th width="10%">Status</th>
 								<th width="10%">Action</th>
 							</tr>
 							<?php
-							$get_product_cart = $ct->get_product_cart();
-							if($get_product_cart){
-								$subtotal = 0;
+							$customer_id= Session::get('customer_id');
+							$get_cart_ordered = $ct->get_cart_ordered($customer_id);
+							if($get_cart_ordered){
+								$i = 0;
 								$qty = 0;
-								while($result = $get_product_cart->fetch_assoc()){
-									
+								while($result = $get_cart_ordered->fetch_assoc()){
+									$i++;
 							?>
 							<tr>
+							  <td><?php echo $i; ?></td>
 								<td><?php echo $result['productName'] ?></td>
 								<td><img src="admin/upload/<?php echo $result['image'] ?>" alt=""/></td>
-								<td><?php echo $result['price'] ?></td>
+								<td><?php echo $result['price'].' '.'VND' ?></td>
 								<td>
-									<form action="" method="post">
-									    <input type="hidden" name="cartId" value="<?php echo $result['cartId'] ?>"/>
-										<input type="number" name="quantity" min ="0" value="<?php echo $result['quantity'] ?>"/>
-										<input type="submit" name="submit" value="Update"/>
-									</form>
+									
+									<?php echo $result['quantity'] ?>
+										
+								
 								</td>
-								<td><?php
-								 $total = $result['price'] * $result['quantity'];
-								 echo $total;
-								 ?></td>
-								<td><a onclick="return confirm('Bạn chắc chắn muốn xóa chứ?');" href="?cartId=<?php echo $result['cartId'] ?>">Xóa</a></td>
+								<td><?php echo $fm->formatDate($result['date_order']) ?>	</td>
+								<td>
+									<?php  
+									if($result['status']=='0'){
+										echo 'Đang chờ xử lý';
+									}else{
+										echo 'Đã xử lý';
+									}
+									
+									?>
+
+
+
+								</td>
+								<?php
+								  if($result['status']=='0'){
+									
+								 ?>
+								 <td> <?php echo'N/A';?></td> 
+								 <?php 
+								  
+									}else{
+								 ?>
+								<td><a onclick="return confirm('Bạn chắc chắn muốn xóa chứ?');" href="?cartid=<?php echo $result['cartId'] ?>">Xóa</a></td>
+							<?php 
+						  }
+							?>
 							</tr>
 							<?php 
-							$subtotal += $total ;
-							$qty = $qty + $result['quantity'] ;
+							
 								}
 								
 						    }
 							?>
 								
 						</table>
-						<?php
-							$check_cart = $ct->check_cart();
-							if($check_cart){ 								
 						
-						?>
-						<table style="float:right;text-align:left;" width="40%">
-							<tr>
-								<th>Sub Total : </th>
-								<td><?php
-									echo $subtotal;									
-									Session::set('sum',$subtotal);
-									Session::set('qty',$qty);
-
-								?></td>
-							</tr>
-							<tr>
-								<th>VAT : </th>
-								<td>10%</td>
-							</tr>
-							<tr>
-								<th>Grand Total :</th>
-								<td><?php
-								$vat = $subtotal * 0.1;
-								$gtotal = $subtotal + $vat;
-								echo $gtotal;
-								?> </td>
-							</tr>
-					   </table>
-					   <?php 
-					  }else {
-                          echo 'Giỏ hàng của bạn trống ! Hãy quay lại mua hàng nhé';
-					  }    
- 					   ?>
+						
+					  
 					</div>
 					<div class="shopping">
 						<div class="shopleft">
