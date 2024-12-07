@@ -69,7 +69,7 @@
 					 <h2><?php echo $result_new['productName']?> </h2>
 					 <p><?php echo $fm->textShorter($result_new['product_desc'],50)?></p>
 					 <p><span class="price"><?php echo $result_new['price']."."."VND"?></span></p>
-				     <div class="button"><span><a href="details.php?proid=<?php echo $result_new['productid']?>" class="details">Details</a></span></div>
+				     <div class="button"><span><a href="details.php?proid=<?php echo $result_new['productid']?>" class="details">Chi tiết</a></span></div>
 			</div>
 				<?php
 			}

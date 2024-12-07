@@ -54,7 +54,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 					</div>
 				<div class="desc span_3_of_2">
 					<h2><?php echo $result_details['productName']?></h2>
-					<p><?php echo $fm->textShorter($result_details['product_desc'],1000)?></p>					
+					<p><?php echo $fm->textShorter($result_details['product_desc'],5000)?></p>					
 					<div class="price">
 						<p>Price: <span><?php echo $result_details['price'].".","VN"?></span></p>
 						<p>Category: <span><?php echo $result_details['category_Name']?></span></p>
