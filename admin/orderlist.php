@@ -20,7 +20,7 @@ if(isset($_GET['delid'])){
 ?>
         <div class="grid_10">
             <div class="box round first grid">
-                <h2>Inbox</h2>
+                <h2>Danh sách đơn hàng</h2>
                 <div class="block">
 					<?php
 					if(isset($shifted)){
@@ -36,13 +36,13 @@ if(isset($_GET['delid'])){
 					<thead>
 						<tr>
 							<th>STT</th>
-							<th>Order time</th>
-							<th>Product</th>
-							<th>Quantity</th>
-							<th>Price</th>
+							<th>Thời gian đặt hàng</th>
+							<th>Tên sản phẩm</th>
+							<th>Số lượng</th>
+							<th>Giá</th>
 							<th>ID Khách hàng</th>
-							<th>Address</th>
-							<th>Action</th>
+							<th>Địa chỉ</th>
+							<th>Trạng thái</th>
 						</tr>
 					</thead>
 					<tbody>

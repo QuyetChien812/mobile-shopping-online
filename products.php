@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <head>
-<title>Free Smart Store Website Template</title>
+<title>Store Website</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -20,43 +20,45 @@
   });
 </script>
 </head>
-  <div class="wrap">
-		<?php
-		require_once('inc/header.php');
-		?>
-
+<body>
+    <div class="wrap">
+	<?php
+    require_once('inc/header.php');
+	
+	?>
  <div class="main">
     <div class="content">
-    	<div class="content_top">
+			<div class="content_bottom">
     		<div class="heading">
-    		<h3>Danh sách sản phẩm</h3>
+    		<h3>Tất cả sản phẩm</h3>
     		</div>
     		<div class="clear"></div>
     	</div>
-	      <div class="section group">
-		  <?php
-			$product_featured= $product->getproduct_Featured();
-			if($product_featured){
-				while($result=$product_featured->fetch_assoc()){
+			<div class="section group">
+			<?php
+			$get_all_product= $product->get_all_product();
+			if($get_all_product){
+				while($result=$get_all_product->fetch_assoc()){
 			?>
 				<div class="grid_1_of_4 images_1_of_4">
-				<a href="details.php"><img src="admin/upload/<?php echo $result['image']?>" alt="" /></a>
+					 <a href="details.php"><img src="admin/upload/<?php echo $result['image']?>" alt="" /></a>
 					 <h2><?php echo $result['productName']?> </h2>
 					 <p><?php echo $fm->textShorter($result['product_desc'],50)?></p>
 					 <p><span class="price"><?php echo $result['price']."."."VND"?></span></p>
-				     <div class="button"><span><a href="details.php?proid=<?php echo $result['productid']?>" class="details">Details</a></span></div>
-				</div>
+				     <div class="button"><span><a href="details.php?proid=<?php echo $result['productid']?>" class="details">Chi tiết</a></span></div>
+			</div>
 				<?php
-				}
+			}
 			}
 			?>
 			</div>
+			
+    </div>
+ </div>
+     <?php 
+	 require_once('inc/footer.php');
+	 ?>
 </div>
-</div>
-</div>
-   <?php
-   require_once('inc/footer.php');
-   ?>
     <script type="text/javascript">
 		$(document).ready(function() {
 			/*
@@ -73,6 +75,20 @@
 		});
 	</script>
     <a href="#" id="toTop" style="display: block;"><span id="toTopHover" style="opacity: 1;"></span></a>
+    <link href="css/flexslider.css" rel='stylesheet' type='text/css' />
+	  <script defer src="js/jquery.flexslider.js"></script>
+	  <script type="text/javascript">
+		$(function(){
+		  SyntaxHighlighter.all();
+		});
+		$(window).load(function(){
+		  $('.flexslider').flexslider({
+			animation: "slide",
+			start: function(slider){
+			  $('body').removeClass('loading');
+			}
+		  });
+		});
+	  </script>
 </body>
 </html>
-

@@ -48,7 +48,7 @@
     <div class="content">
     	<div class="cartoption">		
 			<div class="cartpage">
-			    	<h2>Your Cart</h2>
+			    	<h2>Giỏ hàng của bạn</h2>
 					<?php
 					if(isset($update_quantity_cart)) {
 						echo $update_quantity_cart ;
@@ -61,12 +61,12 @@
 					?>
 						<table class="tblone">
 							<tr>
-								<th width="20%">Product Name</th>
-								<th width="10%">Image</th>
-								<th width="15%">Price</th>
-								<th width="25%">Quantity</th>
-								<th width="20%">Total Price</th>
-								<th width="10%">Action</th>
+								<th width="20%">Tên sản phẩm</th>
+								<th width="10%">Hình ảnh</th>
+								<th width="15%">Giá</th>
+								<th width="25%">Số lượng</th>
+								<th width="20%">Tổng cộng</th>
+								<th width="10%">Chỉnh sửa</th>
 							</tr>
 							<?php
 							$get_product_cart = $ct->get_product_cart();
@@ -109,7 +109,7 @@
 						?>
 						<table style="float:right;text-align:left;" width="40%">
 							<tr>
-								<th>Sub Total : </th>
+								<th>Tổng chưa thuế : </th>
 								<td><?php
 									echo $subtotal;									
 									Session::set('sum',$subtotal);
@@ -122,7 +122,7 @@
 								<td>10%</td>
 							</tr>
 							<tr>
-								<th>Grand Total :</th>
+								<th>Tổng sau thuế :</th>
 								<td><?php
 								$vat = $subtotal * 0.1;
 								$gtotal = $subtotal + $vat;
