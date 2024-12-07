@@ -23,6 +23,12 @@
 <body>
   <div class="wrap">
 		<?php require_once('inc/header.php') ?>
+		<?php
+		$login_check= Session::get('customer_login');	
+		if($login_check == false) {
+			header('Location:login.php');
+			}
+			?>
 <?php
      if(isset($_GET['cartId'])) {
 		$cartId = $_GET['cartId'];
@@ -97,7 +103,7 @@
 							$subtotal += $total ;
 							$qty = $qty + $result['quantity'] ;
 								}
-								
+								 
 						    }
 							?>
 								

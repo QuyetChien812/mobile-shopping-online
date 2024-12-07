@@ -252,17 +252,17 @@ class product{
         $result=$this->db->select($query);
         return $result;
     }
-    public function getLastestDell(){
-        $query = "SELECT * FROM tbl_product WHERE brandid = '8' order by productid desc LIMIT 1";
+    public function getLastestip(){
+        $query = "SELECT * FROM tbl_product WHERE brandid = '11' order by productid desc LIMIT 1";
         $result = $this->db->select($query);
         return $result ;
     }
     public function getLastestoppo(){
-        $query = "SELECT * FROM tbl_product WHERE brandid = '5' order by productid desc LIMIT 1";
+        $query = "SELECT * FROM tbl_product WHERE brandid = '12' order by productid desc LIMIT 1";
         $result = $this->db->select($query);
         return $result ;
     }
-    public function getLastesthuawei(){
+    public function getLastestXiaomi(){
         $query = "SELECT * FROM tbl_product WHERE brandid = '10' order by productid desc LIMIT 1";
         $result = $this->db->select($query);
         return $result ;
