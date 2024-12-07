@@ -48,7 +48,7 @@
     <div class="content">
     	<div class="cartoption">		
 			<div class="cartpage">
-			    	<h2>Giỏ hàng của bạn</h2>
+			    	<h2 style = "width:500px;">Giỏ hàng của bạn</h2>
 					<?php
 					if(isset($update_quantity_cart)) {
 						echo $update_quantity_cart ;

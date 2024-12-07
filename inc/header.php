@@ -93,4 +93,3 @@ header("Cache-Control: max-age=2592000");
 	  <div class="clear"></div>
 	</ul>
 </div>
-<li><a href=""></a></li>
