@@ -63,7 +63,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 				<div class="add-cart">
 					<form action="" method="post">
 						<input type="number" class="buyfield" name="quantity" value="1" min = "1"/>
-						<input type="submit" class="buysubmit" name="submit" value="Buy Now"/>
+						<input type="submit" class="buysubmit" name="submit" value="Thêm vào giỏ"/>
 						<?php
 						if (isset($insertCompare)){
 							echo $insertCompare;
@@ -84,7 +84,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
 					<!-- <a href="?wlist=<?php echo $result_details['productid'] ?>" class ="buysubmit"> Lưu vào sản phẩm yêu thích </a>
 					<a href="?wlist=<?php echo $result_details['productid'] ?>" class ="buysubmit"> So sánh sản phẩm </a> -->
 					<input type="hidden" name="productid" value="<?php echo $result_details['productid'] ?>"/>
-					<input type="submit" class="buysubmit" name="compare" value="Compare Product"/>
+					<input type="submit" class="buysubmit" name="compare" value="So sánh"/>
 				
 					</form>
 				</div>
