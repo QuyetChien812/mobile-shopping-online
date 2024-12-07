@@ -67,8 +67,8 @@
                                 <td><img src ="admin/upload/<?php echo $result['image'] ?>" alt=""/></td>
                                 <td><?php echo $result['price'] ?></td>
                                 <td>
-                                <a  href="?proid=<?php echo $result['productid'] ?>">Xóa</a> |
-                                <a  href="details.php?proid=<?php echo $result['productid'] ?>">Xem</a>
+                                <a  href="?proid=<?php echo $result['productId'] ?>">Xóa</a> |
+                                <a  href="details.php?proid=<?php echo $result['productId'] ?>">Xem</a>
                             </td>
                             </tr>
                         <?php 
