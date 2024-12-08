@@ -10,7 +10,7 @@
 	?>
 <div class="grid_10">
     <div class="box round first grid">
-        <h2>Danh sách tài khoản khách hàng</h2>
+        <h2>Danh sách tài khoản admin</h2>
         <div class="block">  
             <table class="data display datatable" id="example">
 			<thead>
