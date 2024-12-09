@@ -46,7 +46,7 @@
 				?>
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						 <a href="details.php"> <img src="admin/upload/<?php echo $resultop['image'] ?>" alt="" /></a>
+						 <a href="details.php?proid=<?php echo $resultop['productid'] ?>"> <img src="admin/upload/<?php echo $resultop['image'] ?>" alt="" /></a>
 					</div>
 				    <div class="text list_2_of_1">
 						<h2>Oppo</h2>
@@ -64,7 +64,7 @@
 				?>
 				<div class="listview_1_of_2 images_1_of_2">
 					<div class="listimg listimg_2_of_1">
-						  <a href="details.php"><img src="admin/upload/<?php echo $resultXiaomi['image'] ?>" alt="" /></a>
+						  <a href="details.php?proid=<?php echo $resultXiaomi['productid'] ?>"><img src="admin/upload/<?php echo $resultXiaomi['image'] ?>" alt="" /></a>
 					</div>
 					<div class="text list_2_of_1">
 						  <h2>Xiaomi</h2>
