@@ -19,9 +19,9 @@ if(isset($_POST['submit_comment'])){
 <div class="comment">
 				<div class="row">
 					<div class="col-md-8">
-						<h5>Bình luận về sản phẩm</h5>
+						<h5 style="font-size: 20px; font-weight: 600; color: #333; ">Bình luận về sản phẩm</h5>
                         <?php
-                        if(isset($action)){
+                        if(isset($action) && $action != 1){
                             echo $action;
                         }
                         ?>
@@ -34,7 +34,7 @@ if(isset($_POST['submit_comment'])){
 				</div>
 			</div>
             <div class="comments-section mt-5">
-    <h5 class="mb-4 text-primary">Các bình luận của khách hàng:</h5>
+    <h5 class="mb-4 text-primary" style="font-size: 16px;">Các đánh giá sản phẩm của khách hàng:</h5>
     <?php
     $comment = $cm->get_comment_byIdProduct($_GET['proid']);
     if($comment){
