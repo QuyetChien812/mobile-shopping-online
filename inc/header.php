@@ -16,6 +16,7 @@ $cat= new Category();
 $cs = new customer();
 $product= new product();
 $customer = new Customer();
+$cm = new Comment();
 ?>
 <?php  
 header("Cache-Control: no-cache, must-revalidate");
