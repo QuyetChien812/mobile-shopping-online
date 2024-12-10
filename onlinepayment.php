@@ -116,11 +116,11 @@
         <div class="form-section">
             <div class="text-center">
                 <form action="congthanhtoanQR.php" method="post">
-                    <p><input name="total_price" type="hidden" value="<?php echo $total_price*1.1; ?>"></p>
+                    <p><input name="total_price" type="hidden" value="<?php echo $total_price; ?>"></p>
                     <button name="captureWallet" class="btn btn-danger">Thanh toán MOMO QR</button>
                 </form>
                 <form action="congthanhtoanATM.php" method="post">
-                    <p><input name="total_price" type="hidden" value="<?php echo $total_price*1.1; ?>"></p>
+                    <p><input name="total_price" type="hidden" value="<?php echo $total_price;?>"></p>
                     <button name="payWithATM" class="btn btn-danger">Thanh toán MOMO ATM</button>
                 </form>
                 
