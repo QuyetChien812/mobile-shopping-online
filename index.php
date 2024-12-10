@@ -65,7 +65,7 @@
 				while($result_new=$product_new->fetch_assoc()){
 			?>
 				<div class="grid_1_of_4 images_1_of_4">
-					 <a href="details.php"><img src="admin/upload/<?php echo $result_new['image']?>" alt="" /></a>
+					 <a href="details.php?proid=<?php echo $result_new['productid']?>"><img src="admin/upload/<?php echo $result_new['image']?>" alt="" /></a>
 					 <h2><?php echo $result_new['productName']?> </h2>
 					 <p><?php echo $fm->textShorter($result_new['product_desc'],50)?></p>
 					 <p><span class="price"><?php echo $result_new['price']."."."VND"?></span></p>

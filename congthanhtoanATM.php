@@ -30,7 +30,7 @@ $orderInfo = "Thanh toán qua MoMo";
 $amount = "10000";
 $orderId = time() ."";
 $redirectUrl = "http://localhost/mobile-shopping-online/success.php";
-$ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
+$ipnUrl = "http://localhost/mobile-shopping-online/success.php";
 $extraData = "";
 
 

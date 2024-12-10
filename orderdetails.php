@@ -71,8 +71,6 @@
 								<td>
 									
 									<?php echo $result['quantity'] ?>
-										
-								
 								</td>
 								<td><?php echo $fm->formatDate($result['date_order']) ?>	</td>
 								<td>

@@ -36,11 +36,10 @@
 	<?php
     require_once('inc/header.php');
 	?>
-  <?php if(isset($_GET['orderid']) || isset($_GET['orderId'])){
+  <?php if(isset($_GET['orderid']) && $_GET['orderid']=='order'){
 	$customer_id= Session::get('customer_id');
 	$insertOrder= $ct->insertOrder($customer_id);
 	$delCart=$ct->del_all_data_cart();
-	header('Location:success.php');
 }
 	?>
 <div>
