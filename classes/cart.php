@@ -44,6 +44,14 @@ class Cart
         $result = $this->db->select($query);
         return $result ;
     }
+    public function get_all_product_cart(){
+        $query = "SELECT * FROM tbl_cart";
+        $result = $this->db->select($query);
+        if($result){
+            return $result;
+        }
+        return false;
+    }
     public function update_quantity_cart($quantity,$cartId){
         $quantity =  mysqli_real_escape_string($this->db->link, $quantity);
         $cartId =  mysqli_real_escape_string($this->db->link, $cartId);
@@ -114,7 +122,7 @@ class Cart
         $get_price = $this->db->select($query);
         return $get_price;
     }
-
+    
     public function get_cart_ordered($customer_id){
         $query = "SELECT * FROM tbl_order WHERE customer_id = '$customer_id' ";
         $get_cart_ordered = $this->db->select($query);
