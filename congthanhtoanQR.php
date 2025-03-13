@@ -26,18 +26,18 @@ $partnerCode = 'MOMOBKUN20180529';
 $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua MoMo";
-$amount = $_POST['total_price'];
+$amount = "10000";
 $orderId = time() ."";
 $redirectUrl = "http://localhost/mobile-shopping-online/success.php";
-$ipnUrl = "https://webhook.site/b3088a6a-2d17-4f8d-a383-71389a6c600b";
+$ipnUrl = "http://localhost/mobile-shopping-online/success.php";
 $extraData = "";
 
 
 if (!empty($_POST)) {
-    $partnerCode = 'MOMOBKUN20180529';
-    $accessKey = 'klm05TvNBzhg7h7j';
-    $serectkey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
-    $orderId = $orderId ; // Mã đơn hàng
+    $partnerCode = $partnerCode;
+    $accessKey = $accessKey;
+    $serectkey = $secretKey;
+    $orderId = $orderId; // Mã đơn hàng
     $orderInfo = $orderInfo;
     $amount = $amount;
     $ipnUrl = $ipnUrl;

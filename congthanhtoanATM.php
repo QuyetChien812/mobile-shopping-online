@@ -1,5 +1,5 @@
 <?php
-$total = $_POST['total_price'];
+$total_price = $_POST['total_price'];
 function execPostRequest($url, $data)
 {
     $ch = curl_init($url);
@@ -27,25 +27,27 @@ $partnerCode = 'MOMOBKUN20180529';
 $accessKey = 'klm05TvNBzhg7h7j';
 $secretKey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
 $orderInfo = "Thanh toán qua MoMo";
-$amount = $total;
+$amount = $total_price."";
 $orderId = time() ."";
 $redirectUrl = "http://localhost/mobile-shopping-online/success.php";
 $ipnUrl = "http://localhost/mobile-shopping-online/success.php";
 $extraData = "";
 
 
-    $partnerCode = 'MOMOBKUN20180529';
-    $accessKey = 'klm05TvNBzhg7h7j';
-    $serectkey = 'at67qH6mk8w5Y1nAyMoYKMWACiEi2bsa';
+if (!empty($_POST)) {
+    $partnerCode = $partnerCode;
+    $accessKey = $accessKey;
+    $serectkey = $secretKey;
     $orderId = $orderId; // Mã đơn hàng
-    $orderInfo = "Thanh toán qua MoMo";
+    $orderInfo = $orderInfo;
     $amount = $amount;
-    $ipnUrl =  $ipnUrl;
+    $ipnUrl = $ipnUrl;
     $redirectUrl = $redirectUrl;
     $extraData = $extraData;
+
     $requestId = time() . "";
     $requestType = "payWithATM";
-    $extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
+    //$extraData = ($_POST["extraData"] ? $_POST["extraData"] : "");
     //before sign HMAC SHA256 signature
     $rawHash = "accessKey=" . $accessKey . "&amount=" . $amount . "&extraData=" . $extraData . "&ipnUrl=" . $ipnUrl . "&orderId=" . $orderId . "&orderInfo=" . $orderInfo . "&partnerCode=" . $partnerCode . "&redirectUrl=" . $redirectUrl . "&requestId=" . $requestId . "&requestType=" . $requestType;
     $signature = hash_hmac("sha256", $rawHash, $serectkey);
@@ -68,5 +70,5 @@ $extraData = "";
     //Just a example, please check more in there
 
     header('Location: ' . $jsonResult['payUrl']);
-
+}
 ?>

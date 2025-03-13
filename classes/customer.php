@@ -14,34 +14,40 @@ class Customer{
         $this->fm = new Format();
         $this->session = new Session();
      }
-     public function add_customer($customer){
-        $name = mysqli_real_escape_string($this->db->link,$customer['user']); 
-        $city = mysqli_real_escape_string($this->db->link,$customer['City']);
-        $zip = mysqli_real_escape_string($this->db->link,$customer['zipcode']);
-        $email = mysqli_real_escape_string($this->db->link, $customer['email']) ;
+     public function add_customer($customer) {
+        $name = mysqli_real_escape_string($this->db->link, $customer['user']); 
+        $city = mysqli_real_escape_string($this->db->link, $customer['City']);
+        $zip = mysqli_real_escape_string($this->db->link, $customer['zipcode']);
+        $email = mysqli_real_escape_string($this->db->link, $customer['email']);
         $address = mysqli_real_escape_string($this->db->link, $customer['Address']);
-        $country = mysqli_real_escape_string($this->db->link,$customer['country']);
+        $country = mysqli_real_escape_string($this->db->link, $customer['country']);
         $phone = mysqli_real_escape_string($this->db->link, $customer['Phone']);
-        $password = mysqli_real_escape_string($this->db->link, md5($customer['Password']) );
-        if($name == '' || $city == '' || $zip == '' || $email == '' || $address == '' || $country == '' || $phone =='' || $password == ''){
-            return  '<div class="edit-msg er">Vui lòng điền đầy đủ thông tin!</div>';
-            return $message;
+        $password = mysqli_real_escape_string($this->db->link, md5($customer['Password']));
+    
+        // Kiểm tra xem có bất kỳ trường nào bị trống không
+        if ($name == '' || $city == '' || $zip == '' || $email == '' || $address == '' || $country == '' || $phone == '' || $password == '') {
+            return '<div class="edit-msg er">Vui lòng điền đầy đủ thông tin!</div>';
         }
-        else{
-            if($this->check_email_exist($email) == true){
-                return  '<div class="edit-msg er">Email đã tồn tại!</div>';
-            } 
-            else{
-                $query = "INSERT INTO `tbl_customer`( `name`, `address`, `city`, `country`, `zipcode`, `phone`, `email`, `password`) 
-                          VALUES ('$name','$address','$city','$country','$zip','$phone','$email','$password')";
-                $action = $this->db->insert($query);
-                if($action){
-                    return "Thêm thành công";
-                }
-                return  '<div class="edit-msg er">Thêm thất bại, vui lòng thử lại!</div>';
-            }
+    
+        // Kiểm tra xem email đã tồn tại hay chưa
+        $check_query = "SELECT * FROM `tbl_customer` WHERE `email` = '$email'";
+        $result = $this->db->select($check_query);
+    
+        if ($result && mysqli_num_rows($result) > 0) {
+            return '<div class="edit-msg er">Email đã tồn tại, vui lòng sử dụng email khác!</div>';
         }
-     }
+    
+        // Nếu email chưa tồn tại, thêm khách hàng vào cơ sở dữ liệu
+        $query = "INSERT INTO `tbl_customer`(`name`, `address`, `city`, `country`, `zipcode`, `phone`, `email`, `password`) 
+                  VALUES ('$name', '$address', '$city', '$country', '$zip', '$phone', '$email', '$password')";
+        $action = $this->db->insert($query);
+    
+        if ($action) {
+            return '<div class="edit-msg success">Thêm thành công!</div>';
+        } else {
+            return '<div class="edit-msg er">Thêm thất bại, vui lòng thử lại!</div>';
+        }
+    }
      public function customer_login($data){
         $email = mysqli_real_escape_string($this->db->link, $data['Username']);
         $password = mysqli_real_escape_string($this->db->link, md5($data['Password']));
@@ -168,10 +174,11 @@ class Customer{
      }
      
      public function check_email_exist($email){
-        $query = "SELECT * FROM tbl_customer WHERE email = '$email' ";
+        $email = mysqli_real_escape_string($this->db->link, $email);
+        $query = "SELECT * FROM tbl_customer WHERE email = '$email'";
         $act = $this->db->select($query);
-        return $act ? true : false;
-     }
+        return $act && $act->num_rows > 0 ? true : false;
+    }
      public function show_customer($Id){
         $query = "SELECT *FROM tbl_customer WHERE id = '$Id'";
         $result = $this->db->select($query);
